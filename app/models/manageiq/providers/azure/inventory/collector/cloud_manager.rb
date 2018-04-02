@@ -41,6 +41,9 @@ class ManageIQ::Providers::Azure::Inventory::Collector::CloudManager < ManageIQ:
 
   def managed_images
     collect_inventory(:managed_images) { gather_data_for_this_region(@mis) }
+  rescue ::Azure::Armrest::ApiException => err
+    _log.warn("Unable to collect Azure managed images for: [#{@ems.name}] - [#{@ems.id}]: #{err.message}")
+    []
   end
 
   # Collect marketplace image information if configured to do so. Normally

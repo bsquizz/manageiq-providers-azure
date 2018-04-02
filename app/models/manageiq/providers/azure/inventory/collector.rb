@@ -56,8 +56,10 @@ class ManageIQ::Providers::Azure::Inventory::Collector < ManagerRefresh::Invento
   # Shared helpers for full and targeted CloudManager collectors
   ##############################################################
   def managed_disks
-    #@managed_disks ||= collect_inventory(:managed_disks) { @sds.list_all }
-    @managed_disks = []
+    @managed_disks ||= collect_inventory(:managed_disks) { @sds.list_all }
+  rescue ::Azure::Armrest::ApiException => err
+    _log.warn("Unable to collect Azure managed disks for: [#{@ems.name}] - [#{@ems.id}]: #{err.message}")
+    @managed_disks ||= []
   end
 
   def storage_accounts
