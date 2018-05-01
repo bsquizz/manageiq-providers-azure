@@ -10,6 +10,7 @@
       :network_security_group: 2015-06-15
       :resource: 2016-09-01
       :resource_group: 2016-09-01
+      :route_table: 2015-06-15
       :storage_account: 2016-01-01
       :storage_disk: 2016-01-01  
       :template_deployment: 2016-09-01
