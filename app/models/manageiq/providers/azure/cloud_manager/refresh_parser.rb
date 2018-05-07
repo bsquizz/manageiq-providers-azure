@@ -229,11 +229,11 @@ module ManageIQ::Providers
       end
 
       def parse_series(s)
-        name = uid = s.name.downcase
+        uid = s.name.downcase
         new_result = {
           :type           => "ManageIQ::Providers::Azure::CloudManager::Flavor",
           :ems_ref        => uid,
-          :name           => name,
+          :name           => s.name,
           :cpus           => s.number_of_cores, # where are the virtual CPUs??
           :cpu_cores      => s.number_of_cores,
           :memory         => s.memory_in_mb.megabytes,

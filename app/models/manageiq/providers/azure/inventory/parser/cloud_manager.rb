@@ -33,10 +33,10 @@ class ManageIQ::Providers::Azure::Inventory::Parser::CloudManager < ManageIQ::Pr
 
   def flavors
     collector.flavors.each do |flavor|
-      name = uid = flavor.name.downcase
+      uid = flavor.name.downcase
       persister.flavors.build(
         :ems_ref        => uid,
-        :name           => name,
+        :name           => flavor.name,
         :cpus           => flavor.number_of_cores, # where are the virtual CPUs??
         :cpu_cores      => flavor.number_of_cores,
         :memory         => flavor.memory_in_mb.megabytes,
